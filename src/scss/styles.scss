@@ -9,6 +9,7 @@ H1, H2, H3, H4 {
 }
 
   .page-title {
+    margin-bottom: 3rem;
     padding-bottom: 1rem;
     border-bottom: 3px solid #EEE;
     text-align: center;
@@ -24,9 +25,6 @@ UL, LI {
     }
   .level LI:before {
     content: "— ";
-  }
-  .level--0 > LI:before {
-    content: none;
   }
 
 .wrapper {
@@ -54,13 +52,8 @@ UL, LI {
 
     .deep {
       display: inline-block;
-      width: 2rem;
-      height: 2rem;
-      margin-left: .5rem;
-      background: #CCC;
-      border-radius: 50%;
-      line-height: 2rem;
-      text-align: center;
+      font-weight: bold;
+      color: crimson;
     }
     .range-deep {
       width: 100%;

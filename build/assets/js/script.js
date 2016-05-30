@@ -72,8 +72,6 @@ function makeList( elem, level ) {
            && child.tagName != 'SCRIPT'
            && child.tagName != 'META'
            && child.tagName != 'TITLE'
-           && child.tagName != 'LINK'
-           && child.tagName != 'NOSCRIPT'
            && child.tagName != 'BR') {
 
         var newElem = makeList( child, level );

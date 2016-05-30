@@ -8,7 +8,6 @@ H1, H2, H3, H4 {
   margin-top: 0; }
 
 .page-title {
-  margin-bottom: 3rem;
   padding-bottom: 1rem;
   border-bottom: 3px solid #EEE;
   text-align: center; }
@@ -23,6 +22,9 @@ UL, LI {
 
 .level LI:before {
   content: "— "; }
+
+.level--0 > LI:before {
+  content: none; }
 
 .wrapper {
   margin: 2rem auto;
@@ -46,8 +48,13 @@ UL, LI {
 
 .deep {
   display: inline-block;
-  font-weight: bold;
-  color: crimson; }
+  width: 2rem;
+  height: 2rem;
+  margin-left: .5rem;
+  background: #CCC;
+  border-radius: 50%;
+  line-height: 2rem;
+  text-align: center; }
 
 .range-deep {
   width: 100%;
