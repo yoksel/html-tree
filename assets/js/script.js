@@ -56,6 +56,7 @@ function makeList( elem, level ) {
   }
 
   if ( elem.children ) {
+
     level++;
 
     if ( level > maxDeep ) {
@@ -81,9 +82,12 @@ function makeList( elem, level ) {
           childrenList.appendChild( newElem );
         }
       }
+    }
 
+    if ( childrenList.children.length > 0 ) {
       item.appendChild( childrenList );
     }
+
   }
 
   return item;

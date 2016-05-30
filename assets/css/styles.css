@@ -19,10 +19,12 @@ UL, LI {
   list-style: none; }
 
 .level {
-  margin-left: 1.2rem; }
+  margin-left: 1.2rem;
+  margin-bottom: .5rem;
+  background: linear-gradient(to right, white 0.3rem, aquamarine 0.3rem, aquamarine 0.4rem, white 0.4rem); }
 
 .level LI:before {
-  content: "— "; }
+  /*content: "— ";*/ }
 
 .wrapper {
   margin: 2rem auto;
@@ -42,6 +44,7 @@ UL, LI {
   /*border: 1px solid green;*/ }
 
 .elem-tag {
+  background: #FFF;
   color: royalblue; }
 
 .deep {
@@ -56,12 +59,16 @@ UL, LI {
 
 .code-input {
   width: 100%;
+  height: 200px;
   margin-bottom: 3rem;
+  box-sizing: border-box;
   border: 1px solid #CCC;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset; }
 
 .tree {
+  min-height: 200px;
   padding: 1rem;
+  box-sizing: border-box;
   border: 1px solid #DDD; }
 
 .code-output {
