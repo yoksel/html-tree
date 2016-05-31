@@ -1,8 +1,10 @@
 # html-tree
-Генератор дерева из HTML-разметки
+Генератор дерева на основе HTML-разметки
 
-http://yoksel.github.io/html-tree/ 
+http://yoksel.github.io/html-tree/
 
 Вставьте в левое поле HTML-код, и справа появится дерево документа в виде вложенных списков.
+
+![Генератор дерева на основе HTML-разметки](/assets/img/screen.png)
 
 

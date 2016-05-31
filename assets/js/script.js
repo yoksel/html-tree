@@ -4,7 +4,7 @@ var codeOutput = doc.querySelector('.code-output');
 var tree = doc.querySelector('.tree');
 var rangeDeep = doc.querySelector('.deep__range');
 var valDeep = doc.querySelector('.deep__digit');
-var maxDeep = 0;
+var maxDeep = 1;
 
 var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
@@ -13,7 +13,7 @@ codeInput.oninput = function() {
 
   codeOutput.innerHTML = this.value;
 
-  var items =  makeList( codeOutput, 0 );
+  var items =  makeList( codeOutput, 1 );
 
   if ( tree.childElementCount > 0 ) {
     tree.removeChild( tree.firstElementChild );
@@ -37,7 +37,7 @@ function makeList( elem, level ) {
   var tagName = elem.tagName;
   var className = elem.className;
 
-  if ( level === 0) {
+  if ( level === 1 ) {
     tagName = 'BODY';
     className = '';
   }
@@ -64,15 +64,14 @@ function makeList( elem, level ) {
 
     level++;
 
-    if ( level > maxDeep ) {
-      maxDeep = level;
-    }
+
 
     var childrenList = doc.createElement('ul');
     childrenList.classList.add('level','level--' + level);
 
-    for ( var pos in elem.children ){
-      var child = elem.children[ pos ];
+    for ( var i = 0; i < elem.children.length; i++ ){
+
+      var child = elem.children[ i ];
 
       if ( child.tagName
            && child.tagName != 'SCRIPT'
@@ -90,6 +89,10 @@ function makeList( elem, level ) {
     }
 
     if ( childrenList.children.length > 0 ) {
+      if ( level > maxDeep ) {
+        maxDeep = level;
+      }
+
       item.appendChild( childrenList );
     }
 
