@@ -1,7 +1,6 @@
-@charset "UTF-8";
 BODY {
   background: #EEE;
-  font: 14px/1.5 Trebuchet MS, sans-serif; }
+  font: 16px/1.5 Trebuchet MS, sans-serif; }
 
 H1, H2, H3, H4 {
   font-weight: normal;
@@ -17,14 +16,6 @@ UL, LI {
   padding: 0;
   margin: 0;
   list-style: none; }
-
-.level {
-  margin-left: 1.2rem;
-  margin-bottom: .5rem;
-  background: linear-gradient(to right, white 0.3rem, aquamarine 0.3rem, aquamarine 0.4rem, white 0.4rem); }
-
-.level LI:before {
-  /*content: "— ";*/ }
 
 .wrapper {
   margin: 2rem auto;
@@ -43,20 +34,73 @@ UL, LI {
   width: 48%;
   /*border: 1px solid green;*/ }
 
+/* Tree
+------------------------------ */
+.tree {
+  min-height: 200px;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #DDD;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.tree__placeholder {
+  width: 90%;
+  text-align: center;
+  font-size: 14px;
+  color: #999; }
+
+/* Level
+------------------------------ */
+.level {
+  position: relative;
+  margin-bottom: .5rem;
+  margin-left: 1.2rem;
+  background: linear-gradient(to right, lawngreen 1px, transparent 1px);
+  background-repeat: no-repeat;
+  background-position: 10px 0; }
+
+.level:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  width: 2rem;
+  margin-left: 10px;
+  height: .8rem;
+  background: white;
+  border-top: 1px solid lawngreen; }
+
+.level--0:before {
+  height: 1.3rem; }
+
+.level__item {
+  position: relative; }
+  .level__item:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: .7rem;
+    height: .08rem;
+    margin-left: -.55rem;
+    margin-top: .6rem;
+    vertical-align: top;
+    background: lawngreen; }
+  .level--0 > .level__item:before {
+    content: none; }
+
+.level__content {
+  background: white;
+  padding-left: .3rem; }
+
 .elem-tag {
   background: #FFF;
   color: royalblue; }
 
-.deep {
-  display: inline-block;
-  font-weight: bold;
-  color: crimson; }
-
-.range-deep {
-  width: 100%;
-  margin: 0;
-  cursor: pointer; }
-
+/* Code I/O
+------------------------------ */
 .code-input {
   width: 100%;
   height: 200px;
@@ -65,11 +109,17 @@ UL, LI {
   border: 1px solid #CCC;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset; }
 
-.tree {
-  min-height: 200px;
-  padding: 1rem;
-  box-sizing: border-box;
-  border: 1px solid #DDD; }
-
 .code-output {
   display: none; }
+
+/* Deep
+------------------------------ */
+.deep__digit {
+  display: inline-block;
+  font-weight: bold;
+  color: crimson; }
+
+.deep__range {
+  width: 100%;
+  margin: 0;
+  cursor: pointer; }
