@@ -15,12 +15,21 @@
                 <h2 class="column__title">Введите код:</h2>
                 <textarea class="code-input" cols="30" rows="10"></textarea>
 
-                <h3>Глубина вложенности: <span class="deep">1</span></h3>
-                <input type="range" min="1" max="1" value="1" class="range-deep">
+                <div class="deep">
+                    <h3 class="deep__title">Глубина вложенности: <span class="deep__digit">1</span></h3>
+                    <input type="range" min="1" max="1" value="0" class="deep__range">
+                </div>
             </div>
             <div class="column">
-                <h2 class="column__title">Структура документа:</h2>
-                <div class="tree"></div>
+                <h2 class="column__title">Структура:</h2>
+                <div class="tree">
+                    <div class="tree__placeholder">
+                    <p>Чтобы увидеть структуру разметки, вставьте HTML-код в&nbsp;поле слева.</p>
+
+                    <p>Можно вставлять как отдельные блоки, так&nbsp;и&nbsp;код страницы целиком.</p>
+
+                    </div>
+                </div>
             </div>
         </div>
 

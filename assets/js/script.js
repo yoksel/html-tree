@@ -2,8 +2,8 @@ var doc = document;
 var codeInput = doc.querySelector('.code-input');
 var codeOutput = doc.querySelector('.code-output');
 var tree = doc.querySelector('.tree');
-var rangeDeep = doc.querySelector('.range-deep');
-var valDeep = doc.querySelector('.deep');
+var rangeDeep = doc.querySelector('.deep__range');
+var valDeep = doc.querySelector('.deep__digit');
 var maxDeep = 0;
 
 var styleElem = doc.createElement('style');
@@ -20,7 +20,7 @@ codeInput.oninput = function() {
   }
 
   var list = doc.createElement('ul');
-  list.classList.add('tree__list');
+  list.classList.add('level','level--0');
   list.appendChild( items );
   tree.appendChild( list );
 
@@ -33,27 +33,32 @@ codeInput.oninput = function() {
 function makeList( elem, level ) {
 
   var item = doc.createElement('li');
+  item.classList.add('level__item');
   var tagName = elem.tagName;
   var className = elem.className;
 
-  if ( elem.className == 'code-output') {
-    level = 1;
+  if ( level === 0) {
     tagName = 'BODY';
     className = '';
   }
+
+  var liContent = doc.createElement('div');
+  liContent.classList.add('level__content');
 
   var tagSpan = doc.createElement('span');
   tagSpan.classList.add('elem-tag');
   tagSpan.innerHTML = tagName;
 
-  item.appendChild ( tagSpan );
+  liContent.appendChild ( tagSpan );
 
   if ( className ) {
     var classSpan = doc.createElement('span');
     classSpan.classList.add('elem-class');
     classSpan.innerHTML = '.' + className;
-    item.appendChild ( classSpan );
+    liContent.appendChild ( classSpan );
   }
+
+  item.appendChild( liContent );
 
   if ( elem.children ) {
 
