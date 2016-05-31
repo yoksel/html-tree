@@ -1,6 +1,6 @@
 BODY {
   background: #EEE;
-  font: 16px/1.5 Trebuchet MS, sans-serif; }
+  font: 14px/1.5 Trebuchet MS, sans-serif; }
 
 H1, H2, H3, H4 {
   font-weight: normal;
@@ -69,12 +69,12 @@ UL, LI {
   bottom: 0;
   width: 2rem;
   margin-left: 10px;
-  height: .8rem;
+  height: 10px;
   background: white;
   border-top: 1px solid lawngreen; }
 
 .level--0:before {
-  height: 1.3rem; }
+  height: 18px; }
 
 .level__item {
   position: relative; }
@@ -105,9 +105,11 @@ UL, LI {
   width: 100%;
   height: 200px;
   margin-bottom: 3rem;
+  padding: 1rem;
   box-sizing: border-box;
   border: 1px solid #CCC;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset; }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset;
+  font-size: inherit; }
 
 .code-output {
   display: none; }
