@@ -1,5 +1,20 @@
-BODY {
+$level-color: lawngreen;
+
+@mixin title-default ( $mb: 0.83em ) {
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: $mb;
+}
+
+.gnr-html {
+  font-size: 16px;
+}
+
+.gnr-body {
+  min-width: 800px;
+  margin: 0;
   background: #EEE;
+  color: #000;
   font: 14px/1.5 Trebuchet MS, sans-serif;
 }
 
@@ -11,13 +26,6 @@ A {
   }
 }
 
-H1, H2, H3, H4 {
-  font-weight: normal;
-  margin-top: 0;
-}
-
-
-$level-color: lawngreen;
 
 UL, LI {
   padding: 0;
@@ -25,31 +33,37 @@ UL, LI {
   list-style: none ;
 }
 
-.page {
+.gnr-page {
   margin: 2rem auto;
   padding: 3rem;
   width: 80%;
   min-width: 800px;
   max-width: 1200px;
+  box-sizing: content-box;
   background: #FFF;
   box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
-  .page__title {
-    margin-bottom: 3rem;
+  .gnr-page__title {
+    @include title-default( $mb: 3em );
     padding-bottom: 1rem;
     border-bottom: 3px solid #EEE;
     text-align: center;
+    font-size: 2em;
   }
 
-  .page__container {
+  .gnr-page__container {
     display: flex;
     justify-content: space-between;
   }
-    .column {
+    .gnr-column {
       width: 48%;
     }
+      .gnr-column__title {
+        @include title-default;
+        font-size: 1.5em;
+      }
 
-  .page__footer {
+  .gnr-page__footer {
     margin-top: 3rem;
     padding-top: 1rem;
     border-top: 3px solid #EEE;
@@ -62,7 +76,7 @@ UL, LI {
 /* Tree
 ------------------------------ */
 
-.tree {
+.gnr-tree {
   min-height: 200px;
   padding: 1rem;
   box-sizing: border-box;
@@ -71,7 +85,7 @@ UL, LI {
   justify-content: center;
   align-items: center;
 }
-  .tree__placeholder {
+  .gnr-tree__placeholder {
     width: 80%;
     text-align: center;
     font-size: 14px;
@@ -81,7 +95,7 @@ UL, LI {
 /* Level
 ------------------------------ */
 
-.level {
+.gnr-level {
     position: relative;
     margin-bottom: .5rem;
     margin-left: 1.2rem;
@@ -92,7 +106,7 @@ UL, LI {
     background-repeat: no-repeat;
     background-position: 10px 0;
   }
-    .level:before {
+    .gnr-level:before {
       content: "";
       display: block;
       position: absolute;
@@ -105,10 +119,10 @@ UL, LI {
       border-top: 1px solid $level-color;
 
     }
-    .level--0:before {
+    .gnr-level--0:before {
       height: 18px;
     }
-    .level__item {
+    .gnr-level__item {
       position: relative;
 
       &:before {
@@ -122,22 +136,22 @@ UL, LI {
         vertical-align: top;
         background: $level-color;
       }
-      .level--0 > &:before {
+      .gnr-level--0 > &:before {
         content: none;
       }
     }
-      .level__content {
+      .gnr-elem {
           background: white;
           padding-left: .3rem;
       }
-        .elem-tag {
+        .gnr-elem__tag {
           background: #FFF;
           color: royalblue;
         }
 
 /* Code I/O
 ------------------------------ */
-.code-input {
+.gnr-code-input {
   width: 100%;
   height: 200px;
   margin-bottom: 3rem;
@@ -147,20 +161,25 @@ UL, LI {
   box-shadow: 0 0 10px rgba(0,0,0,.2) inset;
   font-size: inherit;
 }
-.code-output {
+.gnr-code-output {
   display: none;
 }
 
 /* Deep
 ------------------------------ */
 
-.deep__digit {
+.gnr-digit__title {
+  @include title-default;
+  font-size: 1.17em;
+}
+
+.gnr-deep__digit {
   display: inline-block;
   font-weight: bold;
   color: crimson;
 }
 
-.deep__range {
+.gnr-deep__range {
   width: 100%;
   margin: 0;
   cursor: pointer;

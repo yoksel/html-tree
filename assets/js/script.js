@@ -1,9 +1,9 @@
 var doc = document;
-var codeInput = doc.querySelector('.code-input');
-var codeOutput = doc.querySelector('.code-output');
-var tree = doc.querySelector('.tree');
-var rangeDeep = doc.querySelector('.deep__range');
-var valDeep = doc.querySelector('.deep__digit');
+var codeInput = doc.querySelector('.gnr-code-input');
+var codeOutput = doc.querySelector('.gnr-code-output');
+var tree = doc.querySelector('.gnr-tree');
+var rangeDeep = doc.querySelector('.gnr-deep__range');
+var valDeep = doc.querySelector('.gnr-deep__digit');
 var maxDeep = 1;
 
 var styleElem = doc.createElement('style');
@@ -13,6 +13,8 @@ codeInput.oninput = function() {
 
   codeOutput.innerHTML = this.value;
 
+  console.log( 'value.length: ', this.value.length );
+
   var items =  makeList( codeOutput, 1 );
 
   if ( tree.childElementCount > 0 ) {
@@ -20,7 +22,7 @@ codeInput.oninput = function() {
   }
 
   var list = doc.createElement('ul');
-  list.classList.add('level','level--0');
+  list.classList.add('gnr-level','gnr-level--0');
   list.appendChild( items );
   tree.appendChild( list );
 
@@ -33,7 +35,7 @@ codeInput.oninput = function() {
 function makeList( elem, level ) {
 
   var item = doc.createElement('li');
-  item.classList.add('level__item');
+  item.classList.add('gnr-level__item');
   var tagName = elem.tagName;
   var className = elem.className;
 
@@ -43,17 +45,18 @@ function makeList( elem, level ) {
   }
 
   var liContent = doc.createElement('div');
-  liContent.classList.add('level__content');
+  liContent.classList.add('gnr-level__elem','gnr-elem');
 
   var tagSpan = doc.createElement('span');
-  tagSpan.classList.add('elem-tag');
+  tagSpan.classList.add('gnr-elem__tag');
   tagSpan.innerHTML = tagName;
 
   liContent.appendChild ( tagSpan );
 
   if ( className ) {
+
     var classSpan = doc.createElement('span');
-    classSpan.classList.add('elem-class');
+    classSpan.classList.add('gnr-elem__class');
     classSpan.innerHTML = '.' + className;
     liContent.appendChild ( classSpan );
   }
@@ -64,10 +67,8 @@ function makeList( elem, level ) {
 
     level++;
 
-
-
     var childrenList = doc.createElement('ul');
-    childrenList.classList.add('level','level--' + level);
+    childrenList.classList.add('gnr-level','gnr-level--' + level);
 
     for ( var i = 0; i < elem.children.length; i++ ){
 

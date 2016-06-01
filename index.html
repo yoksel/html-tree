@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html class="gnr-html">
 <head>
     <meta charset="UTF-8">
     <title>Генератор HTML-дерева</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="gnr-body">
 
-    <div class="page">
-        <h1 class="page__title">Генератор HTML-дерева</h1>
+    <div class="gnr-page">
+        <h1 class="gnr-page__title">Генератор HTML-дерева</h1>
 
-        <div class="page__container">
-            <div class="column">
-                <h2 class="column__title">Введите код:</h2>
-                <textarea class="code-input" cols="30" rows="10"></textarea>
+        <div class="gnr-page__container">
+            <div class="gnr-column">
+                <h2 class="gnr-column__title">Введите код:</h2>
+                <textarea class="gnr-code-input" cols="30" rows="10"></textarea>
 
-                <div class="deep">
-                    <h3 class="deep__title">Уровни: <span class="deep__digit">1</span></h3>
-                    <input type="range" min="1" max="1" value="1" class="deep__range">
+                <div class="gnr-deep">
+                    <h3 class="gnr-deep__title">
+                        Уровни:
+                        <span class="gnr-deep__digit">1</span>
+                    </h3>
+                    <input class="gnr-deep__range" type="range" min="1" max="1" value="1">
                 </div>
             </div>
-            <div class="column">
-                <h2 class="column__title">Структура:</h2>
-                <div class="tree">
-                    <div class="tree__placeholder">
+            <div class="gnr-column">
+                <h2 class="gnr-column__title">Структура:</h2>
+                <div class="gnr-tree">
+                    <div class="gnr-tree__placeholder">
                     <p>Чтобы увидеть структуру разметки, вставьте HTML-код в&nbsp;поле слева.</p>
 
                     <p>Можно вставлять как отдельные блоки, так&nbsp;и&nbsp;код страницы целиком.</p>
@@ -31,12 +34,12 @@
                     </div>
                 </div>
             </div>
-            <div class="code-output"></div>
+            <div class="gnr-code-output"></div>
 
         </div>
 
 
-        <footer class="page__footer">
+        <footer class="gnr-page__footer">
             <a href="https://github.com/yoksel/html-tree/">Проект на GitHub</a>
             <a href="https://twitter.com/yoksel">@yoksel</a>
         </footer>
