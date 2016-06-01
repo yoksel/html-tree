@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>HTML Tree</title>
+    <title>Генератор HTML-дерева</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-    <div class="wrapper">
-        <h1 class="page-title">Генератор HTML-дерева</h1>
+    <div class="page">
+        <h1 class="page__title">Генератор HTML-дерева</h1>
 
-        <div class="container">
+        <div class="page__container">
             <div class="column">
                 <h2 class="column__title">Введите код:</h2>
                 <textarea class="code-input" cols="30" rows="10"></textarea>
@@ -31,9 +31,15 @@
                     </div>
                 </div>
             </div>
+            <div class="code-output"></div>
+
         </div>
 
-        <div class="code-output"></div>
+
+        <footer class="page__footer">
+            <a href="https://github.com/yoksel/html-tree/">Проект на GitHub</a>
+            <a href="https://twitter.com/yoksel">@yoksel</a>
+        </footer>
     </div>
 
     <script src="assets/js/script.js"></script>

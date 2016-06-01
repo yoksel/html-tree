@@ -2,22 +2,21 @@ BODY {
   background: #EEE;
   font: 14px/1.5 Trebuchet MS, sans-serif; }
 
+A {
+  color: royalblue; }
+  A:hover {
+    text-decoration: none; }
+
 H1, H2, H3, H4 {
   font-weight: normal;
   margin-top: 0; }
-
-.page-title {
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 3px solid #EEE;
-  text-align: center; }
 
 UL, LI {
   padding: 0;
   margin: 0;
   list-style: none; }
 
-.wrapper {
+.page {
   margin: 2rem auto;
   padding: 3rem;
   width: 80%;
@@ -26,13 +25,25 @@ UL, LI {
   background: #FFF;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
 
-.container {
+.page__title {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #EEE;
+  text-align: center; }
+
+.page__container {
   display: flex;
   justify-content: space-between; }
 
 .column {
-  width: 48%;
-  /*border: 1px solid green;*/ }
+  width: 48%; }
+
+.page__footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 3px solid #EEE;
+  display: flex;
+  justify-content: space-between; }
 
 /* Tree
 ------------------------------ */
