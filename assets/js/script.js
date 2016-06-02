@@ -9,13 +9,13 @@ var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
 
 // DEV
-var testMarkup = '<ul class="main-nav header__nav"><li class="main-nav__item header__li"><a class="link main-nav__link" href="https://htmlacademy.ru/">HMTL Academy</a></li></ul>';
+var testMarkup = '';
 codeInput.value = testMarkup;
 createTreeFromHTML ( testMarkup );
 
-codeInput.oninput = function() {
-  createTreeFromHTML ( this.value );
-};
+// codeInput.oninput = function() {
+//   createTreeFromHTML ( this.value );
+// };
 
 function createTreeFromHTML ( code ) {
 
