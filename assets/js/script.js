@@ -11,11 +11,11 @@ doc.head.appendChild( styleElem );
 // DEV
 var testMarkup = '';
 codeInput.value = testMarkup;
-createTreeFromHTML ( testMarkup );
+// createTreeFromHTML ( testMarkup );
 
-// codeInput.oninput = function() {
-//   createTreeFromHTML ( this.value );
-// };
+codeInput.oninput = function() {
+  createTreeFromHTML ( this.value );
+};
 
 function createTreeFromHTML ( code ) {
 
