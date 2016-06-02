@@ -122,6 +122,10 @@ UL, LI {
   background: #FFF;
   color: royalblue; }
 
+.gnr-class__item--warning {
+  padding: 0 .2em;
+  background: gold; }
+
 /* Code I/O
 ------------------------------ */
 .gnr-code-input {
