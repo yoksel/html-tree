@@ -1,5 +1,10 @@
 $level-color: lawngreen;
 
+@mixin warn-highlight {
+  padding: 0 .2em;
+  background: gold;
+}
+
 @mixin title-default ( $mb: 0.83em ) {
   font-weight: normal;
   margin-top: 0;
@@ -33,6 +38,10 @@ UL, LI {
   list-style: none ;
 }
 
+.gnr-hidden {
+  display: none;
+}
+
 .gnr-page {
   margin: 2rem auto;
   padding: 3rem;
@@ -44,7 +53,7 @@ UL, LI {
   box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
   .gnr-page__title {
-    @include title-default( $mb: 3em );
+    @include title-default( $mb: 1.5em );
     padding-bottom: 1rem;
     border-bottom: 3px solid #EEE;
     text-align: center;
@@ -120,7 +129,7 @@ UL, LI {
 
     }
     .gnr-level--0:before {
-      height: 18px;
+      height: 10px;
     }
     .gnr-level__item {
       position: relative;
@@ -152,8 +161,7 @@ UL, LI {
         .gnr-class__item {
 
           &--warning {
-            padding: 0 .2em;
-            background: gold;
+            @include warn-highlight;
           }
         }
 
@@ -162,7 +170,7 @@ UL, LI {
 .gnr-code-input {
   width: 100%;
   height: 200px;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   box-sizing: border-box;
   border: 1px solid #CCC;
@@ -176,7 +184,7 @@ UL, LI {
 /* Deep
 ------------------------------ */
 
-.gnr-digit__title {
+.gnr-deep__title {
   @include title-default;
   font-size: 1.17em;
 }
@@ -193,4 +201,39 @@ UL, LI {
   cursor: pointer;
 }
 
+/* Messages
+------------------------------ */
+
+.gnr-messages {
+  margin-top: 2rem;
+}
+
+.gnr-message {
+  padding: .75rem;
+  background: lemonchiffon;
+}
+
+  .gnr-message:not(:last-child) {
+    margin-bottom: .75rem;
+  }
+
+.warning__highlight {
+    @include warn-highlight;
+  }
+
+/* Headers list
+------------------------------ */
+
+.headers__list {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+  .headers__item {
+    margin-left: .5rem;
+
+    &--notfound {
+      opacity: .3;
+    }
+  }
 
