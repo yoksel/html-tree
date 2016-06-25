@@ -1,6 +1,5 @@
 var doc = document;
 var codeInput = doc.querySelector('.gnr-code-input');
-var codeOutput = doc.querySelector('.gnr-code-output');
 var treeContent = doc.querySelector('.gnr-tree__content');
 var treePlaceHolder = doc.querySelector('.gnr-tree__placeholder');
 var rangeDeep = doc.querySelector('.gnr-deep__range');
@@ -54,6 +53,7 @@ function setHeadersDefs () {
 //------------------------------
 
 function createTreeFromHTML ( code ) {
+  var codeOutput = document.createElement('div');
 
   if( !code ) {
     treeContent.classList.add('gnr-hidden');
