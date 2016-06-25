@@ -288,13 +288,7 @@ function showCodeErrors () {
 }
 
 function showBemMessage () {
-
-  if ( hasBemWarning ) {
-    bemMessage.classList.remove( 'gnr-hidden' );
-  }
-  else {
-    bemMessage.classList.add( 'gnr-hidden' );
-  }
+  bemMessage.classList.toggle( 'gnr-hidden', ! hasBemWarning );
 }
 
 //------------------------------
@@ -355,24 +349,13 @@ function checkHeadersLevels () {
     headersMessageContent.appendChild( realOrder );
   }
 
-  if ( isWrongOrder ) {
-    headersMessage.classList.remove( 'gnr-hidden' );
-  }
-  else {
-    headersMessage.classList.add( 'gnr-hidden' );
-  }
-
+  headersMessage.classList.toggle( 'gnr-hidden', ! isWrongOrder );
 }
 
 //------------------------------
 
 function checkIsSkippedTag ( elem ) {
-
-  if ( skippedTags.indexOf( elem.tagName) >= 0 ) {
-    return true;
-  }
-
-  return false;
+  return skippedTags.indexOf( elem.tagName) >= 0;
 }
 
 //------------------------------
