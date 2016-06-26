@@ -1,6 +1,5 @@
 var doc = document;
 var codeInput = doc.querySelector('.gnr-code-input');
-var codeOutput = doc.querySelector('.gnr-code-output');
 var treeContent = doc.querySelector('.gnr-tree__content');
 var treePlaceHolder = doc.querySelector('.gnr-tree__placeholder');
 var rangeDeep = doc.querySelector('.gnr-deep__range');
@@ -54,6 +53,7 @@ function setHeadersDefs () {
 //------------------------------
 
 function createTreeFromHTML ( code ) {
+  var codeOutput = document.createElement('div');
 
   if( !code ) {
     treeContent.classList.add('gnr-hidden');
@@ -123,8 +123,7 @@ function makeList ( elem, level ) {
     var classSpan = doc.createElement('span');
     classSpan.classList.add('gnr-elem__class', 'gnr-class');
 
-    for (var i = 0; i < elem.classList.length; i++) {
-      var classItem = elem.classList[ i ];
+    Array.prototype.forEach.call(elem.classList, function (classItem, i) {
       var classItemSpan = doc.createElement('span');
       classItemSpan.classList.add('gnr-class__item');
       classItemSpan.innerHTML += classItem;
@@ -141,7 +140,7 @@ function makeList ( elem, level ) {
       if ( i < elem.classList.length - 1) {
         classSpan.innerHTML += ' ';
       }
-    }
+    });
 
     classSpan.innerHTML = '.' + classSpan.innerHTML;
     liContent.appendChild ( classSpan );
@@ -156,10 +155,7 @@ function makeList ( elem, level ) {
 
     level++;
 
-    for ( var i = 0; i < elem.children.length; i++ ){
-
-      var child = elem.children[ i ];
-
+    Array.prototype.forEach.call(elem.children, function(child) {
       checkIsWholePage( child );
 
       if ( !checkIsSkippedTag( child )) {
@@ -170,7 +166,7 @@ function makeList ( elem, level ) {
           childrenList.appendChild( newElem );
         }
       }
-    }
+    });
 
     if ( childrenList.children.length > 0 ) {
       if ( level > maxDeep ) {
@@ -197,9 +193,7 @@ function checkBemForElem ( elem ) {
   elem.classList['validBem'] = {};
   var parentPrefixes = findPrefixInParentNode( elem );
 
-  for ( var i = 0; i < elem.classList.length; i++ ) {
-    var classItem = elem.classList[ i ];
-
+  Array.prototype.forEach.call(elem.classList, function (classItem) {
     // Check first part of class with __
     if ( classItem.split('__').length > 1 ) {
       var prefixCorrect = false;
@@ -239,8 +233,7 @@ function checkBemForElem ( elem ) {
         hasBemWarning = true;
       }
     }
-
-  }
+  });
 }
 
 //------------------------------
@@ -249,14 +242,12 @@ function findPrefixInParentNode ( elem ) {
   var classList = elem.parentNode.classList;
   var prefixes = {};
 
-  for (var i = 0; i < classList.length; i++) {
-    var classItem = classList[i];
-
+  Array.prototype.forEach.call(classList, function (classItem) {
     if ( classItem.split('__').length > 1 ) {
       var prefix = classItem.split('__')[0];
       prefixes[ prefix ] = prefix;
     }
-  }
+  });
 
   return prefixes;
 }
@@ -288,13 +279,7 @@ function showCodeErrors () {
 }
 
 function showBemMessage () {
-
-  if ( hasBemWarning ) {
-    bemMessage.classList.remove( 'gnr-hidden' );
-  }
-  else {
-    bemMessage.classList.add( 'gnr-hidden' );
-  }
+  bemMessage.classList.toggle( 'gnr-hidden', ! hasBemWarning );
 }
 
 //------------------------------
@@ -333,8 +318,8 @@ function checkHeadersLevels () {
   }
 
   if ( isWrongOrder ) {
-    for (var i = 0; i < headersOrder.length; i++) {
-      var headerItem = headersOrder[i];
+
+    headersOrder.forEach(function(headerItem) {
       var headerItemSpan = doc.createElement('dd');
       headerItemSpan.classList.add('headers__item');
       headerItemSpan.innerHTML = headerItem;
@@ -347,7 +332,7 @@ function checkHeadersLevels () {
       }
 
       realOrder.appendChild( headerItemSpan );
-    }
+    });
 
     if ( headersMessageContent.firstChild ) {
       headersMessageContent.removeChild( headersMessageContent.firstChild );
@@ -355,24 +340,13 @@ function checkHeadersLevels () {
     headersMessageContent.appendChild( realOrder );
   }
 
-  if ( isWrongOrder ) {
-    headersMessage.classList.remove( 'gnr-hidden' );
-  }
-  else {
-    headersMessage.classList.add( 'gnr-hidden' );
-  }
-
+  headersMessage.classList.toggle( 'gnr-hidden', ! isWrongOrder );
 }
 
 //------------------------------
 
 function checkIsSkippedTag ( elem ) {
-
-  if ( skippedTags.indexOf( elem.tagName) >= 0 ) {
-    return true;
-  }
-
-  return false;
+  return skippedTags.indexOf( elem.tagName) >= 0;
 }
 
 //------------------------------
