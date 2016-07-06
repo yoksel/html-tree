@@ -361,7 +361,7 @@ function checkIsWholePage( elem ){
 //------------------------------
 
 function runDev () {
-  var testMarkup = '<section class="pricеs"><h2>Hello</h2><input class="price" type="radio" id="btn-4" name="toggle" checked><input class="price" type="radio" id="btn-5" name="toggle"><input class="price" type="radio" id="btn-6" name="toggle"><h4>Hello</h4><div class="prices__controls"><label class="control" for="btn-4"></label><label class="control" for="btn-5"></label><label class="control" for="btn-6"></label></div></section>';
+  var testMarkup = '<div class="wrapper"><section class="prices"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content">Footer Content</div></div></footer></div></div>';
   codeInput.value = testMarkup;
   setHeadersDefs();
   hasBemWarning = false;
