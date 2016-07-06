@@ -123,7 +123,7 @@ function makeList ( elem, level ) {
     var classSpan = doc.createElement('span');
     classSpan.classList.add('gnr-elem__class', 'gnr-class');
 
-    Array.prototype.forEach.call(elem.classList, function (classItem, i) {
+    Array.prototype.forEach.call( elem.classList, function ( classItem, i ) {
       var classItemSpan = doc.createElement('span');
       classItemSpan.classList.add('gnr-class__item');
       classItemSpan.innerHTML += classItem;
@@ -155,7 +155,7 @@ function makeList ( elem, level ) {
 
     level++;
 
-    Array.prototype.forEach.call(elem.children, function(child) {
+    Array.prototype.forEach.call( elem.children, function ( child ) {
       checkIsWholePage( child );
 
       if ( !checkIsSkippedTag( child )) {
@@ -193,7 +193,7 @@ function checkBemForElem ( elem ) {
   elem.classList['validBem'] = {};
   var parentPrefixes = findPrefixInParentNode( elem );
 
-  Array.prototype.forEach.call(elem.classList, function (classItem) {
+  Array.prototype.forEach.call( elem.classList, function ( classItem ) {
     // Check first part of class with __
     if ( classItem.split('__').length > 1 ) {
       var prefixCorrect = false;
@@ -242,7 +242,7 @@ function findPrefixInParentNode ( elem ) {
   var classList = elem.parentNode.classList;
   var prefixes = {};
 
-  Array.prototype.forEach.call(classList, function (classItem) {
+  Array.prototype.forEach.call( classList, function ( classItem ) {
     if ( classItem.split('__').length > 1 ) {
       var prefix = classItem.split('__')[0];
       prefixes[ prefix ] = prefix;
