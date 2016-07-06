@@ -42,6 +42,10 @@ UL, LI {
   display: none;
 }
 
+.gnr-highlight {
+  @include warn-highlight;
+}
+
 .gnr-page {
   margin: 2rem auto;
   padding: 3rem;
@@ -159,10 +163,7 @@ UL, LI {
         }
 
         .gnr-class__item {
-
-          &--warning {
-            @include warn-highlight;
-          }
+          white-space: nowrap;
         }
 
 /* Code I/O
@@ -215,10 +216,6 @@ UL, LI {
 
   .gnr-message:not(:last-child) {
     margin-bottom: .75rem;
-  }
-
-.warning__highlight {
-    @include warn-highlight;
   }
 
 /* Headers list

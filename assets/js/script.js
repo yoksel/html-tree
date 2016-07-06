@@ -132,7 +132,7 @@ function makeList ( elem, level ) {
       if ( elem.classList.validBem &&
            elem.classList.validBem[ classItem ] === false  ) {
 
-        classItemSpan.classList.add('gnr-class__item--warning');
+        classItemSpan.classList.add('gnr-highlight');
       }
 
       classSpan.appendChild( classItemSpan );
