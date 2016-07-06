@@ -21,7 +21,7 @@ var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
 
 // DEV ONLY
-// runDev();
+runDev();
 
 //------------------------------
 
