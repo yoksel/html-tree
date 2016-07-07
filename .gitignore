@@ -1,4 +1,5 @@
+.DS_Store
+.publish
 .sass-cache
 build
-.publish
 node_modules

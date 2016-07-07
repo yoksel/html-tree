@@ -21,7 +21,7 @@ var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
 
 // DEV ONLY
-runDev();
+// runDev();
 
 //------------------------------
 
@@ -92,6 +92,13 @@ function makeList ( elem, level ) {
   var tagName = elem.tagName;
   var className = elem.className;
 
+  if ( !elem.customDataSet ) {
+    elem.customDataSet = {
+      prefixes: {},
+      level: level
+    };
+  }
+
   if ( level === 1 ) {
     tagName = 'BODY';
     className = '';
@@ -111,9 +118,9 @@ function makeList ( elem, level ) {
 
   liContent.appendChild ( tagSpan );
 
-  if ( className ) {
+  addClassesAsPrefixes ( elem );
 
-    elem.level = level;
+  if ( className ) {
 
     // Check Bem in levels more then firts child
     if ( level > 2 ) {
@@ -194,21 +201,14 @@ function checkBemForElem ( elem ) {
   var parentPrefixes = findPrefixInParentNode( elem );
 
   Array.prototype.forEach.call( elem.classList, function ( classItem ) {
-    // Check first part of class with __
+
+    // Check first part of class with __ (block name)
     if ( classItem.split('__').length > 1 ) {
       var prefixCorrect = false;
       var prefix = classItem.split('__')[0];
 
-      if ( elem.parentNode.classList.contains( prefix ) ) {
+      if ( elem.customDataSet.prefixes[ prefix ]) {
         prefixCorrect = true;
-      }
-      else {
-        // Try to find prefix in parent classes prefixes
-        var parentPrefixes = findPrefixInParentNode( elem );
-
-        if ( parentPrefixes[ prefix ] ) {
-          prefixCorrect = true;
-        }
       }
 
       elem.classList['validBem'][ classItem ] = prefixCorrect;
@@ -218,7 +218,7 @@ function checkBemForElem ( elem ) {
       }
     }
 
-    // Check first part of class with --
+    // Check first part of class with -- (modificator)
     if ( classItem.split('--').length > 1 ) {
       var modifPrefixCorrect = false;
       var modifPrefix = classItem.split('--')[0];
@@ -254,6 +254,33 @@ function findPrefixInParentNode ( elem ) {
 
 //------------------------------
 
+function addClassesAsPrefixes ( elem ) {
+  var classList = elem.classList;
+
+  if ( elem.customDataSet.level > 2 ) {
+    copyPrefixes( elem );
+  }
+
+  Array.prototype.forEach.call( classList, function ( classItem ) {
+    // Copy only block names
+    if ( classItem.split('__').length === 1 &&
+         classItem.split('--').length === 1 ) {
+      elem.customDataSet.prefixes[ classItem ] = classItem;
+    }
+  });
+}
+
+//------------------------------
+
+function copyPrefixes ( elem ) {
+  var parent = elem.parentNode;
+  for ( var prefix in parent.customDataSet.prefixes ) {
+    elem.customDataSet.prefixes[ prefix ] = prefix;
+  }
+}
+
+//------------------------------
+
 function setRange () {
   rangeDeep.max = maxDeep;
   rangeDeep.value = maxDeep;
@@ -272,11 +299,11 @@ rangeDeep.oninput = function () {
 //------------------------------
 
 function showCodeErrors () {
-
   checkHeadersLevels();
   showBemMessage();
-
 }
+
+//------------------------------
 
 function showBemMessage () {
   bemMessage.classList.toggle( 'gnr-hidden', ! hasBemWarning );
@@ -360,8 +387,20 @@ function checkIsWholePage( elem ){
 
 //------------------------------
 
+function printCurrentElem( elem ) {
+  var classes = elem.classList.value ? '.' + elem.classList.value : '';
+  var preLine = ' — ';
+
+  for (var i = 1; i < elem.customDataSet.level; i++) {
+    preLine += ' — ';
+  }
+  console.log( preLine, elem.tagName + classes);
+}
+
+//------------------------------
+
 function runDev () {
-  var testMarkup = '<div class="wrapper"><section class="prices"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content">Footer Content</div></div></footer></div></div>';
+  var testMarkup = '<div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content">Footer Content</div></div></footer></div></div>';
   codeInput.value = testMarkup;
   setHeadersDefs();
   hasBemWarning = false;
