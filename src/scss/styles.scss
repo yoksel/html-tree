@@ -49,9 +49,6 @@ UL, LI {
 [data-color = "fuchsia"] {
   @include highlight( $color: fuchsia );
 }
-[data-color = "salmon"] {
-  @include highlight( $color: salmon );
-}
 [data-color = "yellow"] {
   @include highlight( $color: yellow );
 }

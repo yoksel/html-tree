@@ -29,10 +29,6 @@ UL, LI {
   box-shadow: -0.2em 0 0 0 fuchsia, 0.2em 0 0 0 fuchsia;
   background: fuchsia; }
 
-[data-color="salmon"] {
-  box-shadow: -0.2em 0 0 0 salmon, 0.2em 0 0 0 salmon;
-  background: salmon; }
-
 [data-color="yellow"] {
   box-shadow: -0.2em 0 0 0 yellow, 0.2em 0 0 0 yellow;
   background: yellow; }

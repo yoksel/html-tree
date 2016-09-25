@@ -18,7 +18,6 @@ var wholePageMarkers = ['META', 'TITLE', 'LINK'];
 var skippedTags = ['SCRIPT', 'META', 'TITLE', 'LINK', 'NOSCRIPT', 'BR', 'svg'];
 
 var highlightColorNum = 0;
-var colorSwitchEnabled = false;
 
 var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
@@ -202,7 +201,7 @@ function makeList ( elem, level ) {
 
 function addClassesActions () {
 
-  var colors = ['fuchsia', 'salmon', 'yellow', 'lime', 'aqua'];
+  var colors = [ 'aqua', 'lime', 'yellow', 'fuchsia' ];
 
   var classItemSpanList = document.querySelectorAll('.gnr-class__item');
 
@@ -211,24 +210,11 @@ function addClassesActions () {
 
       var color = colors[ highlightColorNum ];
 
-      if ( this.dataset.color ) {
+      if ( this.dataset.color && this.dataset.color != '' ) {
         color = '';
       }
 
-      // If there is color, change it
-      if ( colorSwitchEnabled && this.dataset.color ) {
-        if ( highlightColorNum < colors.length ) {
-          highlightColorNum++;
-          color = colors[ highlightColorNum ];
-        }
-        else {
-          color = '';
-          highlightColorNum = 0;
-        }
-      }
-
       this.dataset.color = color;
-
     };
 
   });
