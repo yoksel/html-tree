@@ -52,6 +52,19 @@ gulp.task('ghPages', function() {
     .pipe(ghPages());
 });
 
+gulp.task('default', function() {
+  console.log(colors.rainbow('⬤  ================================ ⬤\n'));
+  console.log('  AVAILABLE COMMANDS:');
+  console.log('  ' + colors.cyan('-------------------\n'));
+  console.log('  ' + colors.yellow('npm start') +
+              ' — run local server with watcher');
+  console.log('  ' + colors.green('npm run build') +
+              ' — make build of the project');
+  console.log('  ' + colors.cyan('npm run deploy') +
+              ' — make build and publish project to Github Pages');
+  console.log(colors.rainbow('\n⬤  ================================ ⬤'));
+});
+
 
 
 
