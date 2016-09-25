@@ -17,6 +17,9 @@ var hasBemWarning = false;
 var wholePageMarkers = ['META', 'TITLE', 'LINK'];
 var skippedTags = ['SCRIPT', 'META', 'TITLE', 'LINK', 'NOSCRIPT', 'BR', 'svg'];
 
+var highlightColorNum = 0;
+var colorSwitchEnabled = false;
+
 var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
 
@@ -35,6 +38,8 @@ codeInput.oninput = function () {
   bemMessage.classList.add( 'gnr-hidden' );
 
   createTreeFromHTML ( this.value );
+
+  addClassesActions();
 };
 
 //------------------------------
@@ -139,7 +144,7 @@ function makeList ( elem, level ) {
       if ( elem.classList.validBem &&
            elem.classList.validBem[ classItem ] === false  ) {
 
-        classItemSpan.classList.add('gnr-highlight');
+        classItemSpan.classList.add('gnr-highlight-bem');
       }
 
       classSpan.appendChild( classItemSpan );
@@ -147,9 +152,14 @@ function makeList ( elem, level ) {
       if ( i < elem.classList.length - 1) {
         classSpan.innerHTML += ' ';
       }
+
     });
 
-    classSpan.innerHTML = '.' + classSpan.innerHTML;
+    var classDotSpan = doc.createElement('span');
+    classDotSpan.classList.add('gnr-class__dot');
+    classDotSpan.innerHTML = '.';
+    liContent.appendChild( classDotSpan );
+
     liContent.appendChild ( classSpan );
   }
 
@@ -186,6 +196,42 @@ function makeList ( elem, level ) {
   }
 
   return item;
+}
+
+//------------------------------
+
+function addClassesActions () {
+
+  var colors = ['fuchsia', 'salmon', 'yellow', 'lime', 'aqua'];
+
+  var classItemSpanList = document.querySelectorAll('.gnr-class__item');
+
+  classItemSpanList.forEach( function( classItemSpan ) {
+    classItemSpan.onclick = function () {
+
+      var color = colors[ highlightColorNum ];
+
+      if ( this.dataset.color ) {
+        color = '';
+      }
+
+      // If there is color, change it
+      if ( colorSwitchEnabled && this.dataset.color ) {
+        if ( highlightColorNum < colors.length ) {
+          highlightColorNum++;
+          color = colors[ highlightColorNum ];
+        }
+        else {
+          color = '';
+          highlightColorNum = 0;
+        }
+      }
+
+      this.dataset.color = color;
+
+    };
+
+  });
 }
 
 //------------------------------

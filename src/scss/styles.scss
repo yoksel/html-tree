@@ -1,8 +1,9 @@
 $level-color: lawngreen;
 
-@mixin warn-highlight {
-  padding: 0 .2em;
-  background: gold;
+@mixin highlight ($color: gold) {
+  box-shadow: -.2em 0 0 0 $color,
+              .2em 0 0 0 $color;
+  background: $color;
 }
 
 @mixin title-default ( $mb: 0.83em ) {
@@ -41,8 +42,24 @@ UL, LI {
   display: none;
 }
 
-.gnr-highlight {
-  @include warn-highlight;
+.gnr-highlight-bem {
+  @include highlight;
+}
+
+[data-color = "fuchsia"] {
+  @include highlight( $color: fuchsia );
+}
+[data-color = "salmon"] {
+  @include highlight( $color: salmon );
+}
+[data-color = "yellow"] {
+  @include highlight( $color: yellow );
+}
+[data-color = "lime"] {
+  @include highlight( $color: lime );
+}
+[data-color = "aqua"] {
+  @include highlight( $color: aqua );
 }
 
 .gnr-page {
@@ -161,8 +178,15 @@ UL, LI {
           color: royalblue;
         }
 
+        .gnr-class__dot {
+          position: relative;
+          padding: 0 .05em;
+          font-size: 1.2em;
+        }
+
         .gnr-class__item {
           white-space: nowrap;
+          cursor: pointer;
         }
 
 /* Code I/O
