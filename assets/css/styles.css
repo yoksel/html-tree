@@ -148,7 +148,8 @@ UL, LI {
 .gnr-class__dot {
   position: relative;
   padding: 0 .05em;
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  line-height: 1; }
 
 .gnr-class__item {
   white-space: nowrap;
