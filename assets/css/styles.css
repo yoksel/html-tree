@@ -103,7 +103,7 @@ UL, LI {
   position: relative;
   margin-bottom: .5rem;
   margin-left: 1.2rem;
-  background: linear-gradient(to right, lawngreen 1px, transparent 1px);
+  background: linear-gradient(to right, lawngreen 1px, transparent 2px);
   background-repeat: no-repeat;
   background-position: 10px 0; }
 
