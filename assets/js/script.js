@@ -9,8 +9,11 @@ var message = doc.querySelector('.gnr-message');
 var bemMessage = doc.querySelector('.gnr-message--bem');
 var headersMessage = doc.querySelector('.gnr-message--headers');
 var headersMessageContent = doc.querySelector('.gnr-message--headers .gnr-message__content');
+var headersMessageTree = doc.querySelector('.gnr-message--headers-tree');
+var headersMessageTreeContent = doc.querySelector('.gnr-message--headers-tree .gnr-message__content');
 var headersLevels = {};
 var headersOrder = ['H1','H2','H3','H4','H5','H6'];
+var headersList = [];
 var isWHolePage = false;
 var hasBemWarning = false;
 
@@ -34,6 +37,7 @@ codeInput.oninput = function () {
   maxDeep = 1;
 
   headersMessage.classList.add( 'gnr-hidden' );
+  headersMessageTree.classList.add( 'gnr-hidden' );
   bemMessage.classList.add( 'gnr-hidden' );
 
   createTreeFromHTML ( this.value );
@@ -52,6 +56,8 @@ function setHeadersDefs () {
     'H5': false,
     'H6': false
     };
+
+  headersList = [];
 }
 
 //------------------------------
@@ -118,6 +124,8 @@ function makeList ( elem, level ) {
   // Check headers levels
   if ( headersLevels[ tagName ] !== undefined ) {
     headersLevels[ tagName ] = true;
+    headersList.push( { tagName: tagName,
+                        text: elem.innerText} );
   }
 
   liContent.appendChild ( tagSpan );
@@ -331,8 +339,9 @@ rangeDeep.oninput = function () {
 //------------------------------
 
 function showCodeErrors () {
-  checkHeadersLevels();
   showBemMessage();
+  checkHeadersLevels();
+  printHeadersTree();
 }
 
 //------------------------------
@@ -404,6 +413,22 @@ function checkHeadersLevels () {
 
 //------------------------------
 
+function printHeadersTree () {
+  var out = '';
+
+  for (var i = 0; i < headersList.length; i++) {
+    var tag = headersList[i].tagName;
+    var text = headersList[i].text;
+
+    out += '<' + tag + '><span>' + tag + '</span> ' + text + '</' + tag + '>';
+  }
+
+  headersMessageTreeContent.innerHTML = out;
+  headersMessageTree.classList.remove( 'gnr-hidden' );
+}
+
+//------------------------------
+
 function checkIsSkippedTag ( elem ) {
   return skippedTags.indexOf( elem.tagName) >= 0;
 }
@@ -432,7 +457,7 @@ function printCurrentElem( elem ) {
 //------------------------------
 
 function runDev () {
-  var testMarkup = '<div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content">Footer Content</div></div></footer></div></div>';
+  var testMarkup = '<h1 class="page__title">Title</h1><div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content"><h4 class="footer__subtitle">Footer SubTitle</h4>Footer Content</div></div></footer></div></div>';
   codeInput.value = testMarkup;
   setHeadersDefs();
   hasBemWarning = false;

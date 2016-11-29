@@ -194,11 +194,13 @@ UL, LI {
   margin-top: 2rem; }
 
 .gnr-message {
+  margin-top: .75rem; }
+  .gnr-message:first-child {
+    margin-top: 0; }
+
+.gnr-message__content {
   padding: .75rem;
   background: lemonchiffon; }
-
-.gnr-message:not(:last-child) {
-  margin-bottom: .75rem; }
 
 /* Headers list
 ------------------------------ */
@@ -211,3 +213,38 @@ UL, LI {
   margin-left: .5rem; }
   .headers__item--notfound {
     opacity: .3; }
+
+/* Headers tree
+------------------------------ */
+.gnr-message--headers-tree {
+  margin-top: 2rem; }
+
+.gnr-message__content--headers-tree {
+  background: #d7ebad;
+  font-size: 10px; }
+  .gnr-message__content--headers-tree H1, .gnr-message__content--headers-tree H2, .gnr-message__content--headers-tree H3, .gnr-message__content--headers-tree H4, .gnr-message__content--headers-tree H5, .gnr-message__content--headers-tree H6 {
+    margin-top: 0;
+    margin-bottom: .85rem;
+    line-height: 1; }
+    .gnr-message__content--headers-tree H1:last-child, .gnr-message__content--headers-tree H2:last-child, .gnr-message__content--headers-tree H3:last-child, .gnr-message__content--headers-tree H4:last-child, .gnr-message__content--headers-tree H5:last-child, .gnr-message__content--headers-tree H6:last-child {
+      margin-bottom: 0; }
+    .gnr-message__content--headers-tree H1 SPAN, .gnr-message__content--headers-tree H2 SPAN, .gnr-message__content--headers-tree H3 SPAN, .gnr-message__content--headers-tree H4 SPAN, .gnr-message__content--headers-tree H5 SPAN, .gnr-message__content--headers-tree H6 SPAN {
+      font-size: .75em;
+      opacity: .5; }
+  .gnr-message__content--headers-tree H1 {
+    font-size: 2em; }
+  .gnr-message__content--headers-tree H2 {
+    margin-left: 1rem;
+    font-size: 1.75em; }
+  .gnr-message__content--headers-tree H3 {
+    margin-left: 3rem;
+    font-size: 1.5em; }
+  .gnr-message__content--headers-tree H4 {
+    margin-left: 3rem;
+    font-size: 1.25em; }
+  .gnr-message__content--headers-tree H5 {
+    margin-left: 4rem;
+    font-size: 1em; }
+  .gnr-message__content--headers-tree H6 {
+    margin-left: 5rem;
+    font-size: .75em; }
