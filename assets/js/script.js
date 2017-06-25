@@ -134,10 +134,7 @@ function makeList ( elem, level ) {
 
   if ( className ) {
 
-    // Check Bem in levels more then firts child
-    if ( level > 2 ) {
-      checkBemForElem ( elem );
-    }
+    checkBemForElem ( elem );
 
     var classSpan = doc.createElement('span');
     classSpan.classList.add('gnr-elem__class', 'gnr-class');
