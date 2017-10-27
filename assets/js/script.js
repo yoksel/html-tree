@@ -101,6 +101,8 @@ function makeList ( elem, level ) {
   item.classList.add('gnr-level__item');
   var tagName = elem.tagName;
   var className = elem.className;
+  elem.classList.forEach = [].forEach;
+  elem.children.forEach = [].forEach;
 
   if ( !elem.customDataSet ) {
     elem.customDataSet = {
@@ -139,7 +141,7 @@ function makeList ( elem, level ) {
     var classSpan = doc.createElement('span');
     classSpan.classList.add('gnr-elem__class', 'gnr-class');
 
-    Array.prototype.forEach.call( elem.classList, function ( classItem, i ) {
+    elem.classList.forEach(function ( classItem, i ) {
       var classItemSpan = doc.createElement('span');
       classItemSpan.classList.add('gnr-class__item');
       classItemSpan.innerHTML += classItem;
@@ -176,7 +178,7 @@ function makeList ( elem, level ) {
 
     level++;
 
-    Array.prototype.forEach.call( elem.children, function ( child ) {
+    elem.children.forEach( function ( child ) {
       checkIsWholePage( child );
 
       if ( !checkIsSkippedTag( child )) {
@@ -228,16 +230,16 @@ function addClassesActions () {
 //------------------------------
 
 function checkBemForElem ( elem ) {
+  elem.classList.forEach = [].forEach;
 
   if ( elem.className.indexOf('__') < 0 &&
        elem.className.indexOf('--') < 0 ) {
     return;
   }
 
-  elem.classList['validBem'] = {};
+  elem.classList.validBem = {};
   var parentPrefixes = findPrefixInParentNode( elem );
-
-  Array.prototype.forEach.call( elem.classList, function ( classItem ) {
+  elem.classList.forEach( function ( classItem ) {
 
     // Check first part of class with __ (block name)
     if ( classItem.split('__').length > 1 ) {
@@ -248,7 +250,7 @@ function checkBemForElem ( elem ) {
         prefixCorrect = true;
       }
 
-      elem.classList['validBem'][ classItem ] = prefixCorrect;
+      elem.classList.validBem[ classItem ] = prefixCorrect;
 
       if ( !prefixCorrect ) {
         hasBemWarning = true;
@@ -264,7 +266,7 @@ function checkBemForElem ( elem ) {
         modifPrefixCorrect = true;
       }
 
-      elem.classList['validBem'][ classItem ] = modifPrefixCorrect;
+      elem.classList.validBem[ classItem ] = modifPrefixCorrect;
 
       if ( !modifPrefixCorrect ) {
         hasBemWarning = true;
@@ -277,9 +279,10 @@ function checkBemForElem ( elem ) {
 
 function findPrefixInParentNode ( elem ) {
   var classList = elem.parentNode.classList;
+  classList.forEach = [].forEach;
   var prefixes = {};
 
-  Array.prototype.forEach.call( classList, function ( classItem ) {
+  classList.forEach(function ( classItem ) {
     if ( classItem.split('__').length > 1 ) {
       var prefix = classItem.split('__')[0];
       prefixes[ prefix ] = prefix;
@@ -293,12 +296,13 @@ function findPrefixInParentNode ( elem ) {
 
 function addClassesAsPrefixes ( elem ) {
   var classList = elem.classList;
+  classList.forEach = [].forEach;
 
   if ( elem.customDataSet.level > 2 ) {
     copyPrefixes( elem );
   }
 
-  Array.prototype.forEach.call( classList, function ( classItem ) {
+  classList.forEach(function ( classItem ) {
     // Copy only block names
     if ( classItem.split('__').length === 1 &&
          classItem.split('--').length === 1 ) {
@@ -331,7 +335,7 @@ rangeDeep.oninput = function () {
   var styles = '.gnr-level--' + level + '{ display: none }';
   styleElem.innerHTML = styles;
   valDeep.innerHTML = this.value;
-}
+};
 
 //------------------------------
 
