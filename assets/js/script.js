@@ -16,6 +16,7 @@ var headersOrder = ['H1','H2','H3','H4','H5','H6'];
 var headersList = [];
 var isWHolePage = false;
 var hasBemWarning = false;
+var bodyClass = '';
 
 var wholePageMarkers = ['META', 'TITLE', 'LINK'];
 var skippedTags = ['SCRIPT', 'META', 'TITLE', 'LINK', 'NOSCRIPT', 'BR', 'svg'];
@@ -72,6 +73,8 @@ function createTreeFromHTML ( code ) {
     return;
   }
 
+  bodyClass = getBodyClass( code );
+  bodyClass && codeOutput.classList.add( bodyClass );
   codeOutput.innerHTML = code;
 
   var items = makeList( codeOutput, 1 );
@@ -278,7 +281,13 @@ function checkBemForElem ( elem ) {
 //------------------------------
 
 function findPrefixInParentNode ( elem ) {
-  var classList = elem.parentNode.classList;
+  var parent = elem.parentNode;
+
+  if (!parent) {
+    return {};
+  }
+
+  var classList = parent.classList;
   classList.forEach = [].forEach;
   var prefixes = {};
 
@@ -298,9 +307,7 @@ function addClassesAsPrefixes ( elem ) {
   var classList = elem.classList;
   classList.forEach = [].forEach;
 
-  if ( elem.customDataSet.level > 2 ) {
-    copyPrefixes( elem );
-  }
+  copyPrefixes( elem );
 
   classList.forEach(function ( classItem ) {
     // Copy only block names
@@ -315,6 +322,11 @@ function addClassesAsPrefixes ( elem ) {
 
 function copyPrefixes ( elem ) {
   var parent = elem.parentNode;
+
+  if (!parent) {
+    return;
+  }
+
   for ( var prefix in parent.customDataSet.prefixes ) {
     elem.customDataSet.prefixes[ prefix ] = prefix;
   }
@@ -453,6 +465,18 @@ function printCurrentElem( elem ) {
     preLine += ' — ';
   }
   console.log( preLine, elem.tagName + classes);
+}
+
+//------------------------------
+
+function getBodyClass(code) {
+  var result = code.match(/body[^>]*class="(.*)"/);
+
+  if (result) {
+    return result[1];
+  }
+
+  return '';
 }
 
 //------------------------------
