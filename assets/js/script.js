@@ -19,7 +19,7 @@ var hasBemWarning = false;
 var bodyClass = '';
 
 var wholePageMarkers = ['META', 'TITLE', 'LINK'];
-var skippedTags = ['SCRIPT', 'META', 'TITLE', 'LINK', 'NOSCRIPT', 'BR', 'svg'];
+var skippedTags = ['SCRIPT', 'META', 'TITLE', 'LINK', 'NOSCRIPT', 'BR'];
 
 var highlightColorNum = 0;
 
@@ -107,7 +107,8 @@ function makeList ( elem, level ) {
   var item = doc.createElement('li');
   item.classList.add('gnr-level__item');
   var tagName = elem.tagName;
-  var className = elem.className;
+  // elem.className not appropriate for svg
+  var className = elem.classList.value;
   elem.classList.forEach = [].forEach;
   elem.children.forEach = [].forEach;
 
@@ -236,10 +237,12 @@ function addClassesActions () {
 //------------------------------
 
 function checkBemForElem ( elem ) {
+  // elem.className not appropriate for svg
+  var className = elem.classList.value;
   elem.classList.forEach = [].forEach;
 
-  if ( elem.className.indexOf('__') < 0 &&
-       elem.className.indexOf('--') < 0 ) {
+  if ( className.indexOf('__') < 0 &&
+       className.indexOf('--') < 0 ) {
     return;
   }
 
@@ -431,6 +434,10 @@ function checkHeadersLevels () {
 
 function printHeadersTree () {
   var out = '';
+
+  if (headersList.length === 0) {
+    return;
+  }
 
   for (var i = 0; i < headersList.length; i++) {
     var tag = headersList[i].tagName;
