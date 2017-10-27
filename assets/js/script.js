@@ -74,7 +74,11 @@ function createTreeFromHTML ( code ) {
   }
 
   bodyClass = getBodyClass( code );
-  bodyClass && codeOutput.classList.add( bodyClass );
+  if (bodyClass) {
+    bodyClass.forEach( function( item ) {
+      item && codeOutput.classList.add( item );
+    });
+  }
   codeOutput.innerHTML = code;
 
   var items = makeList( codeOutput, 1 );
@@ -116,7 +120,6 @@ function makeList ( elem, level ) {
 
   if ( level === 1 ) {
     tagName = 'BODY';
-    className = '';
   }
 
   var liContent = doc.createElement('div');
@@ -470,10 +473,10 @@ function printCurrentElem( elem ) {
 //------------------------------
 
 function getBodyClass(code) {
-  var result = code.match(/body[^>]*class="(.*)"/);
+  var result = code.match(/<body[^>]*class="(.*)"/);
 
   if (result) {
-    return result[1];
+    return result[1].split(' ');
   }
 
   return '';
