@@ -1,7 +1,6 @@
 var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
-var minifyCss = require('gulp-minify-css');
-var cssNano = require('gulp-cssnano');
+var sass = require('gulp-sass');
+sass.compiler = require('node-sass');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var copy = require('gulp-copy');
@@ -10,14 +9,14 @@ var colors = require('colors/safe');
 var del = require('del');
 
 
-gulp.task('sass', function() {
-  return sass('src/scss/**/styles.scss')
-    // .pipe(minifyCss())
-    .pipe(gulp.dest('assets/css'))
+gulp.task('css', function() {
+  return gulp.src('src/scss/**/styles.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('assets/css'));
 });
 
 // WATCH FILES FOR CHANGES AND RELOAD
-gulp.task('serve', function() {
+function watch () {
   browserSync({
     server: {
       baseDir: '.'
@@ -25,9 +24,10 @@ gulp.task('serve', function() {
   });
 
 
-  gulp.watch(['src/scss/**/styles.scss'], ['sass']);
-  gulp.watch(['*.html', 'assets/css/**/*.css', 'assets/js/**/*.js'], {cwd: '.'}, reload);
-});
+  gulp.watch(['src/scss/**/styles.scss'], gulp.series('css'));
+  gulp.watch(['*.html', 'assets/css/**/*.css', 'assets/js/**/*.js'], {cwd: '.'}, gulp.series(reload));
+}
+gulp.task('serve', gulp.series(watch));
 
 // CLEAN BUILD
 gulp.task('clean', function(){
@@ -36,21 +36,25 @@ gulp.task('clean', function(){
   });
 });
 
-// CLEAN BUILD & COPY FILES TO IT
-gulp.task('copy', ['clean'], function() {
+function copy () {
   console.log(colors.magenta('⬤  Clear build/ and copy files to it... ⬤'));
 
   return gulp.src(['assets/**/*', '*.html'])
     .pipe(copy('build/'));
-});
+}
+
+// CLEAN BUILD & COPY FILES TO IT
+gulp.task('copy', gulp.series(['clean'], copy));
 
 // PUBLISH TO GITHUB PAGES
-gulp.task('ghPages', function() {
+function publish() {
   console.log(colors.rainbow('⬤  Publish to Github Pages... ⬤'));
 
   return gulp.src('build/**/*')
     .pipe(ghPages());
-});
+}
+
+gulp.task('ghPages', gulp.series(publish));
 
 gulp.task('default', function() {
   console.log(colors.rainbow('⬤  ================================ ⬤\n'));
