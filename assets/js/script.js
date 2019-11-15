@@ -27,6 +27,7 @@ var styleElem = doc.createElement('style');
 doc.head.appendChild( styleElem );
 
 // DEV ONLY
+// Add to textarea code for easy testing
 // runDev();
 
 //------------------------------
@@ -73,7 +74,11 @@ function createTreeFromHTML ( code ) {
     return;
   }
 
+  // Fix for minified code
+  code = code.replace(/></g, '>\n<');
+
   bodyClass = getBodyClass( code );
+
   if (bodyClass) {
     bodyClass.forEach( function( item ) {
       item && codeOutput.classList.add( item );

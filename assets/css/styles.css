@@ -97,6 +97,9 @@ UL, LI {
   font-size: 14px;
   color: #999; }
 
+.gnr-tree__content {
+  max-width: 100%; }
+
 /* Level
 ------------------------------ */
 .gnr-level {
