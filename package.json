@@ -6,17 +6,17 @@
   "author": "yoksel",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.10.1",
+    "braces": ">=2.3.1",
+    "browser-sync": "^2.26.7",
     "colors": "^1.1.2",
     "del": "^2.2.0",
     "gulp": "^4.0.2",
-    "gulp-copy": "0.0.2",
+    "gulp-copy": "^4.0.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-ruby-sass": "^2.0.6",
     "gulp-sass": "^4.0.2",
-    "node-sass": "^4.13.0",
     "lodash.template": ">=4.5.0",
-    "braces": ">=2.3.1"
+    "node-sass": "^4.14.1"
   },
   "scripts": {
     "start": "gulp serve",
