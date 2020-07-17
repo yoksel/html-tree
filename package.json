@@ -7,7 +7,7 @@
   "license": "ISC",
   "devDependencies": {
     "braces": ">=2.3.1",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.10",
     "colors": "^1.1.2",
     "del": "^2.2.0",
     "gulp": "^4.0.2",
