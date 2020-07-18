@@ -218,7 +218,7 @@ LI {
   .gnr-message__content--headers-tree H6 {
     margin-top: 0;
     margin-bottom: .85rem;
-    line-height: 1;
+    line-height: 1.1;
     font-weight: bold; }
     .gnr-message__content--headers-tree H1:last-child,
     .gnr-message__content--headers-tree H2:last-child,
