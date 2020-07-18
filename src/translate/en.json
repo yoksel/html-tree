@@ -1,6 +1,7 @@
 {
   "lang": "en",
   "title": "HTML Tree Generator",
+  "desc": "Tool generates tree for given HTML markup",
   "inputCode": "Input HTML",
   "levels": "Levels",
   "bemError": "It seems like classes use BEM notation, but something went wrong.",
