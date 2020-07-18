@@ -2,6 +2,8 @@
 
 http://yoksel.github.io/html-tree/
 
+---
+
 <a id="ru">**RU**</a> | [EN &darr;](#en)
 
 ## Генератор дерева на основе HTML-разметки.
@@ -16,7 +18,9 @@ http://yoksel.github.io/html-tree/
 
 Кликните по классу, чтобы подсветить его:
 
-![Выборочная подсветка кода](/img/highlight-ru.png)
+<img src="/img/highlight-ru.png" width="429" alt="Выборочная подсветка кода">
+
+---
 
 [RU &uarr;](#ru) | <a id="en">**EN**</a>
 
@@ -32,4 +36,4 @@ As a bonus there is a simple check of BEM notation and header hierarchy:
 
 Click on class to highlight it:
 
-![Highlighting classes](/img/highlight-en.png)
+<img src="/img/highlight-en.png" width="429" alt="Highlighting classes">
