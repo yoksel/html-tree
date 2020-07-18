@@ -27,7 +27,7 @@ doc.head.appendChild(styleElem);
 
 // DEV ONLY
 // Add to textarea code for easy testing
-runDev();
+// runDev();
 
 // ------------------------------
 
