@@ -1,0 +1,60 @@
+.gnr-message--headers-tree {
+  margin-top: 2rem;
+}
+
+.gnr-message__content--headers-tree {
+  background: lighten(yellowgreen, 30%);
+  font-size: 10px;
+
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6 {
+    margin-top: 0;
+    margin-bottom: .85rem;
+    line-height: 1.1;
+    font-weight: bold;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    SPAN {
+      font-size: .75em;
+      opacity: .5;
+    }
+  }
+
+  /* stylelint-disable no-descending-specificity */
+  H1 {
+    font-size: 2em;
+  }
+
+  H2 {
+    margin-left: 1rem;
+    font-size: 1.75em;
+  }
+
+  H3 {
+    margin-left: 3rem;
+    font-size: 1.5em;
+  }
+
+  H4 {
+    margin-left: 4rem;
+    font-size: 1.25em;
+  }
+
+  H5 {
+    margin-left: 5rem;
+    font-size: 1em;
+  }
+
+  H6 {
+    margin-left: 6rem;
+    font-size: .75em;
+  }
+  /* stylelint-enable no-descending-specificity */
+}

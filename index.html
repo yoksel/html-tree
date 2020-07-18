@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html class="gnr-html">
+<html class="gnr-html" lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Генератор HTML-дерева</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body class="gnr-body">
-
     <div class="gnr-page">
-        <h1 class="gnr-page__title">Генератор HTML-дерева</h1>
+        <header class="gnr-page__header">
+            <h1 class="gnr-page__title">Генератор HTML-дерева</h1>
+        </header>
 
         <div class="gnr-page__container">
             <div class="gnr-column">
@@ -25,7 +26,9 @@
 
                 <div class="gnr-messages">
                     <div class="gnr-message gnr-message--bem gnr-hidden">
-                        <div class="gnr-message__content">Похоже, в&nbsp;классах используется БЭМ-нотация, но&nbsp;<nobr>что-то</nobr>&nbsp;пошло&nbsp;<span class="gnr-highlight">не&nbsp;так</span>.</div>
+                        <div class="gnr-message__content">
+                            Похоже, в&nbsp;классах используется БЭМ-нотация, но&nbsp;<nobr>что-то</nobr>&nbsp;пошло&nbsp;<span class="gnr-highlight">не&nbsp;так</span>.
+                        </div>
                     </div>
                     <div class="gnr-message gnr-message--headers gnr-hidden">
                       <div class="gnr-message__content"></div>
@@ -42,14 +45,11 @@
                 <div class="gnr-tree">
                     <div class="gnr-tree__content"></div>
                     <div class="gnr-tree__placeholder">
-                        <p>Чтобы увидеть структуру разметки, вставьте HTML-код в&nbsp;поле слева.</p>
-
-                        <p>Можно вставлять как отдельные блоки, так&nbsp;и&nbsp;код страницы целиком.</p>
+                        <p>Чтобы увидеть структуру разметки, вставьте HTML-код в&nbsp;поле слева.</p><p>Можно вставлять как отдельные блоки, так&nbsp;и&nbsp;код страницы целиком.</p>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <footer class="gnr-page__footer">
             <a href="https://github.com/yoksel/html-tree/">Проект на GitHub</a>
@@ -57,11 +57,10 @@
         </footer>
     </div>
 
-    <script src="assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(44819299, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/44819299" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-
 </body>
 </html>

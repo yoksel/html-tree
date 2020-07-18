@@ -1,0 +1,38 @@
+.gnr-html {
+  font-size: 16px;
+}
+
+.gnr-body {
+  min-width: 800px;
+  margin: 0;
+  background: #EEE;
+  color: #000;
+  font: 15px/1.5 Trebuchet MS, sans-serif;
+}
+
+H1,
+H2,
+H3 {
+  margin-top: 0;
+  margin-bottom: .8em;
+  font-weight: normal;
+}
+
+A {
+  color: royalblue;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+UL,
+LI {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.gnr-hidden {
+  display: none;
+}

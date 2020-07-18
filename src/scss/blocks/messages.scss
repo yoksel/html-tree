@@ -1,0 +1,16 @@
+.gnr-messages {
+  margin-top: 2rem;
+}
+
+.gnr-message {
+  margin-top: .75rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.gnr-message__content {
+  padding: .75rem;
+  background: lemonchiffon;
+}

@@ -1,0 +1,25 @@
+@mixin highlight ($color: gold) {
+  box-shadow: -.2em 0 0 0 $color,
+    .2em 0 0 0 $color;
+  background: $color;
+}
+
+.gnr-highlight-bem {
+  @include highlight;
+}
+
+[data-color="fuchsia"] {
+  @include highlight( $color: fuchsia );
+}
+
+[data-color="yellow"] {
+  @include highlight( $color: yellow );
+}
+
+[data-color="lime"] {
+  @include highlight( $color: lime );
+}
+
+[data-color="aqua"] {
+  @include highlight( $color: aqua );
+}

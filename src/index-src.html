@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="gnr-html" lang="{{lang}}">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="{{path}}/assets/css/styles.css">
+</head>
+<body class="gnr-body">
+  <div class="gnr-page">
+    <header class="gnr-page__header">
+      <h1 class="gnr-page__title">{{title}}</h1>
+
+      <ul class="gnr-page__langs">
+        {{#langs}}
+        <li class="gnr-page__langs-item">
+          {{{.}}}
+        </li>
+        {{/langs}}
+      </ul>
+    </header>
+
+    <div class="gnr-page__container">
+      <div class="gnr-column">
+        <h2 class="gnr-column__title">{{inputCode}}:</h2>
+        <textarea class="gnr-code-input" cols="30" rows="10"></textarea>
+
+        <div class="gnr-deep">
+          <h3 class="gnr-deep__title">
+            {{levels}}:
+            <span class="gnr-deep__digit">1</span>
+          </h3>
+          <input class="gnr-deep__range" type="range" min="1" max="1" value="1">
+        </div>
+
+        <div class="gnr-messages">
+          <div class="gnr-message gnr-message--bem gnr-hidden">
+            <div class="gnr-message__content">
+              {{{bemError}}}
+            </div>
+          </div>
+          <div class="gnr-message gnr-message--headers gnr-hidden">
+            <div class="gnr-message__content" data-text="{{headers}}: "></div>
+          </div>
+
+          <div class="gnr-message gnr-message--headers-tree gnr-hidden">
+            <h2 class="gnr-column__title">{{headersTree}}:</h2>
+            <div class="gnr-message__content gnr-message__content--headers-tree"></div>
+          </div>
+          </div>
+      </div>
+      <div class="gnr-column">
+        <h2 class="gnr-column__title">{{markupTree}}:</h2>
+        <div class="gnr-tree">
+          <div class="gnr-tree__content"></div>
+          <div class="gnr-tree__placeholder">
+            {{{tip}}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="gnr-page__footer">
+      <a href="https://github.com/yoksel/html-tree/">{{projectOn}} GitHub</a>
+      <a href="https://twitter.com/{{twitter}}">@{{twitter}}</a>
+    </footer>
+  </div>
+
+  <script src="{{path}}/assets/js/script.js"></script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(44819299, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/44819299" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</body>
+</html>

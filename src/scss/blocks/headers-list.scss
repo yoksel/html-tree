@@ -1,0 +1,13 @@
+.headers__list {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.headers__item {
+  margin-left: .5rem;
+
+  &--notfound {
+    opacity: .3;
+  }
+}

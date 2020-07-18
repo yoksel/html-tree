@@ -1,0 +1,18 @@
+{
+  "lang": "en",
+  "title": "HTML Tree Generator",
+  "inputCode": "Input HTML",
+  "levels": "Levels",
+  "bemError": "It seems like classes use BEM notation, but something went wrong.",
+  "headers": "Headers",
+  "headersTree": "Headers tree",
+  "markupTree": "Markup tree",
+  "tip": "<p>To see markup tree, add HTML to textarea on the left.</p><p>You can add whole page or particular blocks.</p>",
+  "projectOn": "Project on ",
+  "twitter": "yoksel_en",
+  "langs": [
+    "<a>EN</a>",
+    "<a href=\"../\">RU</a>"
+  ],
+  "path": ".."
+}

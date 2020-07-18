@@ -1,0 +1,17 @@
+.gnr-page__langs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+
+  A:not([href]) {
+    font-weight: bold;
+    color: inherit;
+  }
+}
+
+.gnr-page__langs-item {
+  & + & {
+    margin-left: .5rem;
+  }
+}

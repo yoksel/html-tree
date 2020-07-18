@@ -1,0 +1,36 @@
+.gnr-page {
+  margin: 2rem auto;
+  padding: 2rem 3rem 3rem;
+  width: 80%;
+  min-width: 800px;
+  max-width: 1200px;
+  box-sizing: content-box;
+  background: #FFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.gnr-page__header {
+  position: relative;
+  margin-bottom: 2.65rem;
+  padding: 1rem 0;
+  border-bottom: 3px solid #EEE;
+}
+
+.gnr-page__title {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 2em;
+}
+
+.gnr-page__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gnr-page__footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 3px solid #EEE;
+  display: flex;
+  justify-content: space-between;
+}

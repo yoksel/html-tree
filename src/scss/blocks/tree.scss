@@ -1,0 +1,98 @@
+$level-color: lawngreen;
+
+.gnr-tree {
+  min-height: 200px;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #DDD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gnr-tree__placeholder {
+  width: 80%;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.gnr-tree__content {
+  max-width: 100%;
+}
+
+/* Level
+------------------------------ */
+
+.gnr-level {
+  position: relative;
+  margin-bottom: .5rem;
+  margin-left: 1.2rem;
+  background:
+    linear-gradient(
+      to right,
+      lawngreen 1px,
+      transparent 2px
+    );
+  background-repeat: no-repeat;
+  background-position: 10px 0;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    left: -1px;
+    bottom: 0;
+    width: 2rem;
+    margin-left: 10px;
+    height: 10px;
+    background: white;
+    border-top: 1px solid $level-color;
+  }
+
+  &--0::before {
+    height: 10px;
+  }
+}
+
+.gnr-level__item {
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: .7rem;
+    height: .08rem;
+    margin-left: -.55rem;
+    margin-top: .6rem;
+    background: $level-color;
+  }
+
+  .gnr-level--0 > &::before {
+    content: none;
+  }
+}
+
+.gnr-elem {
+  padding-left: .3rem;
+  background: white;
+}
+
+.gnr-elem__tag {
+  background: #FFF;
+  color: royalblue;
+}
+
+.gnr-class__dot {
+  position: relative;
+  padding: 0 .05em;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.gnr-class__item {
+  white-space: nowrap;
+  cursor: pointer;
+}

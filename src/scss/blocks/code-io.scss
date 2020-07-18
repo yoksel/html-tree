@@ -1,0 +1,15 @@
+.gnr-code-input {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 2rem;
+  padding: .75rem;
+  box-sizing: border-box;
+  border: 1px solid #CCC;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
+  font: inherit;
+  line-height: 1.3;
+}
+
+.gnr-code-output {
+  display: none;
+}
