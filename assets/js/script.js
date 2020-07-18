@@ -445,6 +445,7 @@ function getBodyClass (code) {
 
 // ------------------------------
 
+// eslint-disable-next-line no-unused-vars
 function runDev () {
   const testMarkup = `<h1 class="page__title">Title</h1><div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content"><h4 class="footer__subtitle">Footer SubTitle</h4>Footer Content</div></div></footer></div></div>`;
   codeInput.value = testMarkup;
