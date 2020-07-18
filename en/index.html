@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html class="gnr-html" lang="ru">
+<html class="gnr-html" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Генератор HTML-дерева</title>
+  <title>HTML-tree generator</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body class="gnr-body">
   <div class="gnr-page">
     <header class="gnr-page__header">
-      <h1 class="gnr-page__title">Генератор HTML-дерева</h1>
+      <h1 class="gnr-page__title">HTML-tree generator</h1>
 
       <ul class="gnr-page__langs">
         <li class="gnr-page__langs-item">
-          <a href="../en">EN</a>
+          <a>EN</a>
         </li>
         <li class="gnr-page__langs-item">
-          <a>RU</a>
+          <a href="../">RU</a>
         </li>
       </ul>
     </header>
 
     <div class="gnr-page__container">
       <div class="gnr-column">
-        <h2 class="gnr-column__title">Введите код:</h2>
+        <h2 class="gnr-column__title">Input HTML:</h2>
         <textarea class="gnr-code-input" cols="30" rows="10"></textarea>
 
         <div class="gnr-deep">
           <h3 class="gnr-deep__title">
-            Уровни:
+            Levels:
             <span class="gnr-deep__digit">1</span>
           </h3>
           <input class="gnr-deep__range" type="range" min="1" max="1" value="1">
@@ -36,33 +36,33 @@
         <div class="gnr-messages">
           <div class="gnr-message gnr-message--bem gnr-hidden">
             <div class="gnr-message__content">
-              Похоже, в&nbsp;классах используется БЭМ-нотация, но&nbsp;<nobr>что-то</nobr>&nbsp;пошло&nbsp;не&nbsp;так.
+              It seems like classes use BEM notation, but something went wrong.
             </div>
           </div>
           <div class="gnr-message gnr-message--headers gnr-hidden">
-            <div class="gnr-message__content" data-text="Заголовки: "></div>
+            <div class="gnr-message__content" data-text="Headers: "></div>
           </div>
 
           <div class="gnr-message gnr-message--headers-tree gnr-hidden">
-            <h2 class="gnr-column__title">Структура заголовков:</h2>
+            <h2 class="gnr-column__title">Headers tree:</h2>
             <div class="gnr-message__content gnr-message__content--headers-tree"></div>
           </div>
           </div>
       </div>
       <div class="gnr-column">
-        <h2 class="gnr-column__title">Структура разметки:</h2>
+        <h2 class="gnr-column__title">Markup tree:</h2>
         <div class="gnr-tree">
           <div class="gnr-tree__content"></div>
           <div class="gnr-tree__placeholder">
-            <p>Чтобы увидеть структуру разметки, вставьте HTML-код в&nbsp;поле слева.</p><p>Можно вставлять как отдельные блоки, так&nbsp;и&nbsp;код страницы целиком.</p>
+            <p>To see markup tree, add HTML to textarea on the left.</p><p>You can add whole page or particular blocks.</p>
           </div>
         </div>
       </div>
     </div>
 
     <footer class="gnr-page__footer">
-      <a href="https://github.com/yoksel/html-tree/">Проект на GitHub</a>
-      <a href="https://twitter.com/yoksel">@yoksel</a>
+      <a href="https://github.com/yoksel/html-tree/">Project on  GitHub</a>
+      <a href="https://twitter.com/yoksel_en">@yoksel_en</a>
     </footer>
   </div>
 
