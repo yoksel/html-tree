@@ -16,6 +16,7 @@ let headersList = [];
 let isWHolePage = false;
 let hasBemWarning = false;
 let bodyClass = ``;
+let htmlClass = ``;
 
 const wholePageMarkers = [`META`, `TITLE`, `LINK`];
 const skippedTags = [`SCRIPT`, `META`, `TITLE`, `LINK`, `NOSCRIPT`, `BR`];
@@ -65,6 +66,7 @@ function setHeadersDefs () {
 
 function createTreeFromHTML (code) {
   const codeOutput = document.createElement(`div`);
+  let codeOutputTarget = codeOutput;
 
   if (!code) {
     treeContent.classList.add(`gnr-hidden`);
@@ -76,14 +78,26 @@ function createTreeFromHTML (code) {
   // Fix for minified code
   code = code.replace(/></g, `>\n<`);
 
-  bodyClass = getBodyClass(code);
+  bodyClass = getTagClass(code);
+  htmlClass = getTagClass(code, `html`);
 
-  if (bodyClass) {
-    bodyClass.forEach(function (item) {
+  if (htmlClass) {
+    // Add inner container to show elements in proper order
+    codeOutputTarget = document.createElement(`div`);
+    codeOutput.append(codeOutputTarget);
+
+    htmlClass.forEach(function (item) {
+      // Add classes to outer element
       item && codeOutput.classList.add(item);
     });
   }
-  codeOutput.innerHTML = code;
+  if (bodyClass) {
+    bodyClass.forEach(function (item) {
+      item && codeOutputTarget.classList.add(item);
+    });
+  }
+
+  codeOutputTarget.innerHTML = code;
 
   const items = makeList(codeOutput, 1);
 
@@ -122,7 +136,13 @@ function makeList (elem, level) {
     };
   }
 
-  if (level === 1) {
+  if (htmlClass) {
+    if (level === 1) {
+        tagName = `HTML`;
+    } else if (level === 2) {
+      tagName = `BODY`;
+    }
+  } else if (level === 1) {
     tagName = `BODY`;
   }
 
@@ -433,8 +453,9 @@ function checkIsWholePage (elem) {
 
 // ------------------------------
 
-function getBodyClass (code) {
-  const result = code.match(/<body[^>]*class="(.*)"/);
+function getTagClass (code, tagName = `body`) {
+  const regexp = new RegExp(`<${tagName}[^>]*class="(.*)"`);
+  const result = code.match(regexp);
 
   if (result) {
     return result[1].split(` `);
@@ -447,7 +468,7 @@ function getBodyClass (code) {
 
 // eslint-disable-next-line no-unused-vars
 function runDev () {
-  const testMarkup = `<h1 class="page__title">Title</h1><div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content"><h4 class="footer__subtitle">Footer SubTitle</h4>Footer Content</div></div></footer></div></div>`;
+  const testMarkup = `<html class="page"><body class="page__body"><h1 class="page__title">Title</h1><div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content"><h4 class="footer__subtitle">Footer SubTitle</h4>Footer Content</div></div></footer></div></div></body></html>`;
   codeInput.value = testMarkup;
   setHeadersDefs();
   hasBemWarning = false;
