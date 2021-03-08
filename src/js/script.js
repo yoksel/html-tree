@@ -76,7 +76,7 @@ function createTreeFromHTML (code) {
   }
 
   // Fix for minified code
-  code = code.replace(/></g, `>\n<`);
+  code = code.replace(/>\s*</g, `>\n<`);
 
   bodyClass = getTagClass(code);
   htmlClass = getTagClass(code, `html`);
@@ -500,8 +500,7 @@ function getTagClass (code, tagName = `body`) {
 // eslint-disable-next-line no-unused-vars
 function runDev () {
   const testMarkup = `<html class="page">
-  <body class="page__body">
-  <h1 class="page__title">Title</h1>
+  <body class="page__body">    <h1 class="page__title">Title</h1>
   <div class="wrapper wrapper__container">
     <header class="header">
       <nav class="header__menu">
