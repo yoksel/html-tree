@@ -255,44 +255,69 @@ function addClassesActions () {
 function checkBemForElem (elem) {
   // elem.className not appropriate for svg
   const className = elem.classList.value;
-  elem.classList.forEach = [].forEach;
+  const hasDashesDelimiter = className.indexOf(`--`) >= 0;
+  const hasUnderlinesDelimiter = className.indexOf(`__`) >= 0;
+  const matchSingleUnderline = className.match(/[^_]_[^_]/);
 
-  if (className.indexOf(`__`) < 0 &&
-       className.indexOf(`--`) < 0) {
-    return;
+  if (!hasDashesDelimiter &&
+    !hasUnderlinesDelimiter &&
+    !matchSingleUnderline) {
+      return;
   }
 
+  elem.classList.forEach = [].forEach;
   elem.classList.validBem = {};
+
   elem.classList.forEach(function (classItem) {
+    const hasDashesDelimiter = classItem.indexOf(`--`) >= 0;
+    const hasUnderlinesDelimiter = classItem.indexOf(`__`) >= 0;
+    const matchSingleUnderline = classItem.match(/[^_]_[^_]/);
+
+    if (!hasUnderlinesDelimiter &&
+      !hasDashesDelimiter &&
+      !matchSingleUnderline) {
+      return;
+    }
+
     // Check first part of class with __ (block name)
-    if (classItem.split(`__`).length > 1) {
+    if (hasUnderlinesDelimiter) {
       let prefixCorrect = false;
       const prefix = classItem.split(`__`)[0];
+      // Example: wrapper wrapper__container
+      const hasPrefixOnSameElement = elem.classList.contains(prefix);
+      const isClassExistsOnParents = elem.customDataSet.prefixes[prefix];
 
-      if (elem.customDataSet.prefixes[prefix]) {
+      if (isClassExistsOnParents && !hasPrefixOnSameElement) {
         prefixCorrect = true;
+      }
+      else {
+        hasBemWarning = true;
       }
 
       elem.classList.validBem[classItem] = prefixCorrect;
-
-      if (!prefixCorrect) {
-        hasBemWarning = true;
-      }
     }
 
-    // Check first part of class with -- (modificator)
-    if (classItem.split(`--`).length > 1) {
-      let modifPrefixCorrect = false;
-      const modifPrefix = classItem.split(`--`)[0];
+    // Check first part of class with -- or _ (modificators)
+    let modifPrefix = '';
+    let modifPrefixCorrect = false;
 
+    if (hasDashesDelimiter) {
+      modifPrefix = classItem.split(`--`)[0];
+    }
+    else if (matchSingleUnderline) {
+      modifPrefix = classItem.slice(0, matchSingleUnderline.index + 1)
+    }
+
+    if (modifPrefix) {
       if (elem.classList.contains(modifPrefix)) {
         modifPrefixCorrect = true;
       }
-
-      elem.classList.validBem[classItem] = modifPrefixCorrect;
-
-      if (!modifPrefixCorrect) {
+      else {
         hasBemWarning = true;
+      }
+
+      if (!modifPrefixCorrect){
+        elem.classList.validBem[classItem] = modifPrefixCorrect;
       }
     }
   });
@@ -308,8 +333,14 @@ function addClassesAsPrefixes (elem) {
 
   classList.forEach(function (classItem) {
     // Copy only block names
-    if (classItem.split(`__`).length === 1 &&
-         classItem.split(`--`).length === 1) {
+    const hasDashesDelimiter = classItem.indexOf(`--`) >= 0;
+    const hasUnderlinesDelimiter = classItem.indexOf(`__`) >= 0;
+    const matchSingleUnderline = classItem.match(/[^_]_[^_]/);
+
+    if (!hasUnderlinesDelimiter &&
+        !hasDashesDelimiter &&
+        !matchSingleUnderline
+      ) {
       elem.customDataSet.prefixes[classItem] = classItem;
     }
   });
@@ -468,7 +499,47 @@ function getTagClass (code, tagName = `body`) {
 
 // eslint-disable-next-line no-unused-vars
 function runDev () {
-  const testMarkup = `<html class="page"><body class="page__body"><h1 class="page__title">Title</h1><div class="wrapper"><section class="prices1"><div><h2 class="prices__title">Title</h2><div class="prices__content prices__content--disabled">Content</div></div></section><section class="reviews"><div><h2 class="reviews__title">Title</h2><div class="reviews__content">Content</div></div></section><footer class="footer"><div><h2 class="footer__title">Footer Title</h2><div class="footer__content"><h4 class="footer__subtitle">Footer SubTitle</h4>Footer Content</div></div></footer></div></div></body></html>`;
+  const testMarkup = `<html class="page">
+  <body class="page__body">
+  <h1 class="page__title">Title</h1>
+  <div class="wrapper wrapper__container">
+    <header class="header">
+      <nav class="header__menu">
+        <a class="
+            header__menu-item
+            btn
+            btn--bordered
+            btn__bordered
+            btn_bordered
+            login-long
+            signup_link
+          "
+          href="#">Перейти во входящие</a>
+      </nav>
+    </header>
+    <section class="prices1">
+      <div>
+        <h2 class="prices__title">Title</h2>
+        <div class="prices__content prices__content--disabled">Content</div>
+      </div>
+    </section>
+    <section class="reviews">
+      <div class="reviews-inner_wide">
+        <h2 class="reviews__title">Title</h2>
+        <div class="reviews__content">Content</div>
+      </div>
+    </section>
+    <footer class="footer--wide">
+      <div>
+        <h2 class="footer__title">Footer Title</h2>
+        <div class="footer__content">
+          <h4 class="footer__subtitle">Footer SubTitle</h4>
+          Footer Content
+        </div>
+      </div>
+    </footer>
+  </div>
+</div></body></html>`;
   codeInput.value = testMarkup;
   setHeadersDefs();
   hasBemWarning = false;
