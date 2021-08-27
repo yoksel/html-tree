@@ -31,7 +31,7 @@
     "start": "gulp serve",
     "build": "gulp build",
     "deploy": "npm run build && gulp ghPages",
-    "test": "npm run js:lint && npm run css:lint",
+    "lint": "npm run js:lint && npm run css:lint",
     "lint:fix": "npm run js:fix && npm run css:fix",
     "js:lint": "eslint src",
     "js:fix": "eslint src --fix",
