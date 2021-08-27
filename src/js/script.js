@@ -418,7 +418,7 @@ function checkHeadersLevels () {
   if (maxUsedHeaders > longestHeadersStack) {
     isWrongOrder = true;
   } else if (isWHolePage && !headersLevels.H1) {
-   isWrongOrder = true;
+    isWrongOrder = true;
   }
 
   if (isWrongOrder) {
@@ -482,7 +482,7 @@ function checkIsWholePage (elem) {
 // ------------------------------
 
 function getTagClass (code, tagName = `body`) {
-  const regexp = new RegExp(`<${tagName}[^>]*class="(.*)"`);
+  const regexp = new RegExp(`<${tagName}[^>]*class="(.[^"]*)"`);
   const result = code.match(regexp);
 
   if (result) {
