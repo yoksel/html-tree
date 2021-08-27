@@ -89,7 +89,7 @@ function publish () {
 
 gulp.task(`ghPages`, gulp.series(publish));
 
-gulp.task(`default`, function () {
+gulp.task(`default`, function (done) {
   console.log(colors.rainbow(`⬤  ================================ ⬤\n`));
   console.log(`  AVAILABLE COMMANDS:`);
   console.log(`  ` + colors.cyan(`-------------------\n`));
@@ -100,4 +100,6 @@ gulp.task(`default`, function () {
   console.log(`  ` + colors.cyan(`npm run deploy`) +
               ` — make build and publish project to Github Pages`);
   console.log(colors.rainbow(`\n⬤  ================================ ⬤`));
+
+  done();
 });
