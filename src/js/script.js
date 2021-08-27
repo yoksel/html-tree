@@ -179,7 +179,7 @@ function makeList (elem, level) {
 
       // Check valid Bem naiming
       if (elem.classList.validBem &&
-           elem.classList.validBem[classItem] === false) {
+            elem.classList.validBem[classItem] === false) {
         classItemSpan.classList.add(`gnr-highlight-bem`);
       }
 
@@ -289,8 +289,7 @@ function checkBemForElem (elem) {
 
       if (isClassExistsOnParents && !hasPrefixOnSameElement) {
         prefixCorrect = true;
-      }
-      else {
+      } else {
         hasBemWarning = true;
       }
 
@@ -298,25 +297,23 @@ function checkBemForElem (elem) {
     }
 
     // Check first part of class with -- or _ (modificators)
-    let modifPrefix = '';
+    let modifPrefix = ``;
     let modifPrefixCorrect = false;
 
     if (hasDashesDelimiter) {
       modifPrefix = classItem.split(`--`)[0];
-    }
-    else if (matchSingleUnderline) {
-      modifPrefix = classItem.slice(0, matchSingleUnderline.index + 1)
+    } else if (matchSingleUnderline) {
+      modifPrefix = classItem.slice(0, matchSingleUnderline.index + 1);
     }
 
     if (modifPrefix) {
       if (elem.classList.contains(modifPrefix)) {
         modifPrefixCorrect = true;
-      }
-      else {
+      } else {
         hasBemWarning = true;
       }
 
-      if (!modifPrefixCorrect){
+      if (!modifPrefixCorrect) {
         elem.classList.validBem[classItem] = modifPrefixCorrect;
       }
     }
