@@ -482,7 +482,7 @@ function checkIsWholePage (elem) {
 // ------------------------------
 
 function getTagClass (code, tagName = `body`) {
-  const regexp = new RegExp(`<${tagName}[^>]*class="(.*)"`);
+  const regexp = new RegExp(`<${tagName}[^>]*class="(.[^"]*)"`);
   const result = code.match(regexp);
 
   if (result) {
@@ -496,7 +496,7 @@ function getTagClass (code, tagName = `body`) {
 
 // eslint-disable-next-line no-unused-vars
 function runDev () {
-  const testMarkup = `<html class="page">
+  const testMarkup = `<html class="page" lang="en">
   <body class="page__body">    <h1 class="page__title">Title</h1>
   <div class="wrapper wrapper__container">
     <header class="header">
